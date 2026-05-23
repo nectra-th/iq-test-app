@@ -200,13 +200,13 @@ const questions = [
     [S('circle','medium','none',C.white),S('triangle','small','solid',C.white,{y:18})],
     [S('circle','medium','none',C.white),S('triangle','small','solid',C.white,{y:-18})]],answer:3},
 
-// L3-07 Odd-one-out: 4 rotated same way, 1 mirrored
+// L3-07 Odd-one-out: 5 nested shapes, 4 have matching outer+inner color, 1 mismatched
 { type:'odd-one-out', difficulty:3, figures:[
-    [S('lshape','large','solid',C.orange,{rotation:0})],
-    [S('lshape','large','solid',C.orange,{rotation:0})],
-    [S('lshape','large','solid',C.orange,{rotation:180})],
-    [S('lshape','large','solid',C.orange,{rotation:0})],
-    [S('lshape','large','solid',C.orange,{rotation:0})]],answer:2},
+    [S('circle','large','none',C.red,{inner:S('star','small','solid',C.red)})],
+    [S('square','large','none',C.blue,{inner:S('diamond','small','solid',C.blue)})],
+    [S('triangle','large','none',C.green,{inner:S('cross','small','solid',C.red)})],
+    [S('diamond','large','none',C.purple,{inner:S('circle','small','solid',C.purple)})],
+    [S('hexagon','large','none',C.orange,{inner:S('triangle','small','solid',C.orange)})]],answer:2},
 
 // L3-08 Rotation: cross + circle + triangle, 90°
 { type:'rotation', difficulty:3, original:[
