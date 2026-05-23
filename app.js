@@ -180,7 +180,7 @@
                 break;
         }
 
-        nextBtn.textContent = currentIndex === TOTAL_QUESTIONS - 1 ? 'See Result →' : 'Next →';
+        nextBtn.style.display = 'none';
     }
 
     function renderOptionButtons(options) {
@@ -202,10 +202,10 @@
         const correct = index === q.answer;
         const buttons = choicesContainer.querySelectorAll('.choice-btn');
 
+        // Just highlight the selected answer, no correct/wrong feedback
         buttons.forEach((btn, i) => {
             btn.style.pointerEvents = 'none';
-            if (i === q.answer) btn.classList.add('correct');
-            if (i === index && !correct) btn.classList.add('wrong');
+            if (i === index) btn.classList.add('selected');
         });
 
         // Record response
@@ -218,7 +218,8 @@
             if (nextQ) activeQuestions.push(nextQ);
         }
 
-        nextBtn.disabled = false;
+        // Auto-advance after brief delay
+        setTimeout(() => nextQuestion(), 400);
     }
 
     function nextQuestion() {
