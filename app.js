@@ -155,12 +155,12 @@
             case 'matrix':
                 questionVisual.appendChild(SVGEngine.renderMatrix(q.grid));
                 choicesContainer.className = 'choices visual-choices';
-                renderOptionButtons(q.options);
+                renderOptionButtons(q.options, q.answer);
                 break;
             case 'series':
                 questionVisual.appendChild(SVGEngine.renderSeries(q.sequence));
                 choicesContainer.className = 'choices visual-choices';
-                renderOptionButtons(q.options);
+                renderOptionButtons(q.options, q.answer);
                 break;
             case 'odd-one-out':
                 questionVisual.style.display = 'none';
@@ -176,14 +176,14 @@
             case 'rotation':
                 questionVisual.appendChild(SVGEngine.renderRotationStimulus(q.original, q.transform));
                 choicesContainer.className = 'choices visual-choices';
-                renderOptionButtons(q.options);
+                renderOptionButtons(q.options, q.answer);
                 break;
         }
 
         nextBtn.style.display = 'none';
     }
 
-    function renderOptionButtons(options) {
+    function renderOptionButtons(options, correctIndex) {
         options.forEach((option, index) => {
             const btn = document.createElement('button');
             btn.className = 'choice-btn';
@@ -202,7 +202,7 @@
         const correct = index === q.answer;
         const buttons = choicesContainer.querySelectorAll('.choice-btn');
 
-        // Just highlight the selected answer, no correct/wrong feedback
+        // Highlight selected, disable all
         buttons.forEach((btn, i) => {
             btn.style.pointerEvents = 'none';
             if (i === index) btn.classList.add('selected');
@@ -250,11 +250,9 @@
         // Range: ~1.0 (all wrong at level 1) to ~5.0 (all right at level 5)
         const theta = avgDifficulty * weightedRatio + (1 - weightedRatio) * 1;
 
-        // Map theta to IQ using normal distribution
-        // theta 1.0 → ~70, theta 3.0 → ~100, theta 5.0 → ~145
-        // Linear mapping: IQ = 55 + theta * 18.75
-        // But use slight curve to compress extremes
-        const rawIQ = 55 + theta * 18;
+        // Map theta to IQ scale
+        // theta 1.0 → ~74, theta 3.0 → ~111, theta ~4.88 (perfect) → ~145
+        const rawIQ = 55 + theta * 18.5;
 
         // Small time bonus (max +3): rewards decisive answers
         const avgTime = elapsedSeconds / responses.length;

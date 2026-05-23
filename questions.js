@@ -273,19 +273,25 @@ const questions = [
     [S('triangle','large','none',C.white,{inner:S('star','large','solid',C.blue)})],
     [S('square','large','none',C.white,{inner:S('diamond','large','solid',C.blue)})]],answer:0},
 
-// L4-03 Matrix: rotation + fill + shape
+// L4-03 Matrix: shape per row + Latin-square fill (shifted per row) + shifted rotation
+// Row1: arrow  none/striped/solid   0°/90°/180°
+// Row2: star   striped/solid/none   90°/180°/270°
+// Row3: cross  solid/none/?         180°/270°/?    → fill=striped, rotation=360°=0°
 { type:'matrix', difficulty:4, grid:[
-    [S('arrow','medium','none',C.white,{rotation:0})],[S('arrow','medium','striped',C.white,{rotation:45})],[S('arrow','medium','solid',C.white,{rotation:90})],
-    [S('star','medium','none',C.white,{rotation:0})],[S('star','medium','striped',C.white,{rotation:45})],[S('star','medium','solid',C.white,{rotation:90})],
-    [S('cross','medium','none',C.white,{rotation:0})],[S('cross','medium','striped',C.white,{rotation:45})],null],
-  options:[[S('cross','medium','solid',C.white,{rotation:90})],[S('cross','medium','solid',C.white,{rotation:45})],[S('cross','medium','striped',C.white,{rotation:90})],[S('arrow','medium','solid',C.white,{rotation:90})]],answer:0},
+    [S('arrow','medium','none',C.white,{rotation:0})],[S('arrow','medium','striped',C.white,{rotation:90})],[S('arrow','medium','solid',C.white,{rotation:180})],
+    [S('star','medium','striped',C.white,{rotation:90})],[S('star','medium','solid',C.white,{rotation:180})],[S('star','medium','none',C.white,{rotation:270})],
+    [S('cross','medium','solid',C.white,{rotation:180})],[S('cross','medium','none',C.white,{rotation:270})],null],
+  options:[[S('cross','medium','striped',C.white,{rotation:0})],[S('cross','medium','striped',C.white,{rotation:90})],[S('cross','medium','solid',C.white,{rotation:0})],[S('cross','medium','none',C.white,{rotation:0})]],answer:0},
 
-// L4-04 Matrix: count doubles per row, color per column
+// L4-04 Matrix: shape per row + color per column + count = row×col (multiplicative interaction)
+// Row1 (×1): circle  1 red, 2 green, 3 blue
+// Row2 (×2): square  2 red, 4 green, 6 blue
+// Row3 (×3): triangle 3 red, 6 green, ? blue → 9
 { type:'matrix', difficulty:4, grid:[
-    [S('dot','tiny','solid',C.red,{count:1})],[S('dot','tiny','solid',C.green,{count:1})],[S('dot','tiny','solid',C.blue,{count:1})],
-    [S('dot','tiny','solid',C.red,{count:2})],[S('dot','tiny','solid',C.green,{count:2})],[S('dot','tiny','solid',C.blue,{count:2})],
-    [S('dot','tiny','solid',C.red,{count:4})],[S('dot','tiny','solid',C.green,{count:4})],null],
-  options:[[S('dot','tiny','solid',C.blue,{count:4})],[S('dot','tiny','solid',C.blue,{count:3})],[S('dot','tiny','solid',C.blue,{count:6})],[S('dot','tiny','solid',C.red,{count:4})]],answer:0},
+    [S('circle','tiny','solid',C.red,{count:1})],[S('circle','tiny','solid',C.green,{count:2})],[S('circle','tiny','solid',C.blue,{count:3})],
+    [S('square','tiny','solid',C.red,{count:2})],[S('square','tiny','solid',C.green,{count:4})],[S('square','tiny','solid',C.blue,{count:6})],
+    [S('triangle','tiny','solid',C.red,{count:3})],[S('triangle','tiny','solid',C.green,{count:6})],null],
+  options:[[S('triangle','tiny','solid',C.blue,{count:9})],[S('triangle','tiny','solid',C.blue,{count:8})],[S('triangle','tiny','solid',C.blue,{count:6})],[S('triangle','tiny','solid',C.red,{count:9})]],answer:0},
 
 // L4-05 Series: 3 attributes changing — shape/color/rotation
 { type:'series', difficulty:4, sequence:[
@@ -330,12 +336,15 @@ const questions = [
     [S('diamond','large','none',C.teal,{rotation:90}),S('dot','tiny','solid',C.red,{x:-20,y:0}),S('cross','small','solid',C.yellow,{x:10,y:-16,rotation:90})],
     [S('diamond','large','none',C.teal,{rotation:270}),S('dot','tiny','solid',C.red,{x:20,y:0}),S('cross','small','solid',C.yellow,{x:10,y:16,rotation:270})]],answer:0},
 
-// L4-10 Matrix: shape+fill per row, color+size per column
+// L4-10 Matrix: shape per row + size per column + Latin-square fill (shifted per row)
+// Row1: circle  none/striped/solid     small/medium/large
+// Row2: square  striped/solid/none     small/medium/large
+// Row3: triangle solid/none/?          small/medium/large   → fill=striped
 { type:'matrix', difficulty:4, grid:[
-    [S('circle','small','none',C.red)],[S('circle','medium','none',C.green)],[S('circle','large','none',C.blue)],
-    [S('square','small','striped',C.red)],[S('square','medium','striped',C.green)],[S('square','large','striped',C.blue)],
-    [S('triangle','small','solid',C.red)],[S('triangle','medium','solid',C.green)],null],
-  options:[[S('triangle','large','solid',C.blue)],[S('triangle','large','none',C.blue)],[S('triangle','large','striped',C.blue)],[S('circle','large','solid',C.blue)]],answer:0},
+    [S('circle','small','none',C.orange)],[S('circle','medium','striped',C.orange)],[S('circle','large','solid',C.orange)],
+    [S('square','small','striped',C.orange)],[S('square','medium','solid',C.orange)],[S('square','large','none',C.orange)],
+    [S('triangle','small','solid',C.orange)],[S('triangle','medium','none',C.orange)],null],
+  options:[[S('triangle','large','striped',C.orange)],[S('triangle','large','solid',C.orange)],[S('triangle','large','none',C.orange)],[S('circle','large','striped',C.orange)]],answer:0},
 
 // L4-11 Series: compound — size grows, inner shape changes, fill alternates
 { type:'series', difficulty:4, sequence:[
@@ -349,13 +358,13 @@ const questions = [
     [S('square',50,'none',C.white,{inner:S('hexagon','medium','solid',C.red)})],
     [S('square',50,'solid',C.white,{inner:S('circle','medium','solid',C.red)})]],answer:0},
 
-// L4-12 Odd-one-out: rotation symmetry — 4 have rotational symmetry, arrow doesn't
+// L4-12 Odd-one-out: nested shapes — 4 have inner with +1 side vs outer, 1 has inner with fewer sides
 { type:'odd-one-out', difficulty:4, figures:[
-    [S('cross','large','solid',C.teal)],
-    [S('square','large','solid',C.teal)],
-    [S('star','large','solid',C.teal)],
-    [S('arrow','large','solid',C.teal)],
-    [S('circle','large','solid',C.teal)]],answer:3},
+    [S('triangle','large','none',C.red,{inner:S('square','small','solid',C.red)})],
+    [S('square','large','none',C.green,{inner:S('pentagon','small','solid',C.green)})],
+    [S('pentagon','large','none',C.blue,{inner:S('hexagon','small','solid',C.blue)})],
+    [S('hexagon','large','none',C.orange,{inner:S('triangle','small','solid',C.orange)})],
+    [S('diamond','large','none',C.purple,{inner:S('pentagon','small','solid',C.purple)})]],answer:3},
 
 // =============================================
 // LEVEL 5 — Multiple overlapping rules + near-miss distractors (12 questions)
@@ -418,10 +427,14 @@ const questions = [
     [S('triangle','large','solid',C.green,{rotation:0})],
     [S('square','large','none',C.green,{rotation:0})]],answer:0},
 
-// L5-06 Series: fibonacci count 1,1,2,3,?
+// L5-06 Series: 4 attributes cycle simultaneously — shape +1 side, fill/color/size all cycle period 3
+// Shape:  tri→sq→pent→hex→hept  (sides +1)
+// Size:   small→medium→large→small→medium  (cycle 3)
+// Fill:   solid→none→striped→solid→none  (cycle 3)
+// Color:  red→blue→green→red→blue  (cycle 3)
 { type:'series', difficulty:5, sequence:[
-    [S('dot','small','solid',C.teal,{count:1})],[S('dot','small','solid',C.teal,{count:1})],[S('dot','small','solid',C.teal,{count:2})],[S('dot','small','solid',C.teal,{count:3})]],
-  options:[[S('dot','small','solid',C.teal,{count:5})],[S('dot','small','solid',C.teal,{count:4})],[S('dot','small','solid',C.teal,{count:6})],[S('dot','small','solid',C.teal,{count:3})]],answer:0},
+    [S('triangle','small','solid',C.red)],[S('square','medium','none',C.blue)],[S('pentagon','large','striped',C.green)],[S('hexagon','small','solid',C.red)]],
+  options:[[S('heptagon','medium','none',C.blue)],[S('heptagon','medium','solid',C.blue)],[S('heptagon','large','none',C.blue)],[S('heptagon','medium','none',C.green)]],answer:0},
 
 // L5-07 Odd-one-out: 5 with 3 attributes, 4 share a hidden rule, 1 breaks it
 { type:'odd-one-out', difficulty:5, figures:[
