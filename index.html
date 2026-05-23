@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQ Test - วัดระดับ IQ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- หน้าเริ่มต้น -->
+        <div id="start-screen" class="screen active">
+            <h1>IQ Test</h1>
+            <p class="subtitle">ทดสอบวัดระดับ IQ ของคุณ</p>
+            <p class="description">แบบทดสอบ Adaptive 25 ข้อ จาก pool 60 ข้อ 5 ระดับ<br>ระบบจะปรับความยากตามคำตอบของคุณ ไม่ต้องใช้ภาษา — สังเกต pattern แล้วเลือกรูปที่ถูกต้อง</p>
+            <p class="disclaimer">* ผลเป็นการประเมินเบื้องต้นเท่านั้น ไม่ใช่ผล IQ ทางคลินิก</p>
+            <button id="start-btn" class="btn btn-primary">เริ่มทดสอบ</button>
+        </div>
+
+        <!-- หน้าคำถาม -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="question-number">ข้อ 1 / 20</span>
+                    <span id="timer">เวลา: 00:00</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </div>
+            <div class="question-area">
+                <div id="question-visual" class="question-visual"></div>
+                <div id="choices" class="choices visual-choices"></div>
+            </div>
+            <button id="next-btn" class="btn btn-primary" disabled>ข้อถัดไป</button>
+        </div>
+
+        <!-- หน้าแสดงผล -->
+        <div id="result-screen" class="screen">
+            <h1>ผลการทดสอบ</h1>
+            <div class="result-card">
+                <div id="iq-score" class="iq-score"></div>
+                <div id="iq-label" class="iq-label"></div>
+                <div id="iq-description" class="iq-description"></div>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-value" id="correct-count"></span>
+                        <span class="stat-label">ตอบถูก</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="total-time"></span>
+                        <span class="stat-label">เวลาที่ใช้</span>
+                    </div>
+                </div>
+            </div>
+            <button id="retry-btn" class="btn btn-primary">ทำแบบทดสอบอีกครั้ง</button>
+        </div>
+    </div>
+
+    <script src="svg-engine.js"></script>
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
