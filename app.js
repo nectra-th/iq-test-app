@@ -55,7 +55,7 @@
             elapsedSeconds++;
             const mins = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
             const secs = String(elapsedSeconds % 60).padStart(2, '0');
-            timerDisplay.textContent = `เวลา: ${mins}:${secs}`;
+            timerDisplay.textContent = `⏱ ${mins}:${secs}`;
         }, 1000);
     }
 
@@ -66,8 +66,8 @@
     function formatTime(seconds) {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
-        if (mins === 0) return `${secs} วินาที`;
-        return `${mins} นาที ${secs} วินาที`;
+        if (mins === 0) return `${secs}s`;
+        return `${mins}m ${secs}s`;
     }
 
     // --- Adaptive question selection ---
@@ -144,7 +144,7 @@
         answered = false;
         nextBtn.disabled = true;
 
-        questionNumber.textContent = `ข้อ ${currentIndex + 1} / ${TOTAL_QUESTIONS}`;
+        questionNumber.textContent = `${currentIndex + 1} / ${TOTAL_QUESTIONS}`;
         progressFill.style.width = `${(currentIndex / TOTAL_QUESTIONS) * 100}%`;
 
         questionVisual.innerHTML = '';
@@ -180,7 +180,7 @@
                 break;
         }
 
-        nextBtn.textContent = currentIndex === TOTAL_QUESTIONS - 1 ? 'ดูผลลัพธ์' : 'ข้อถัดไป';
+        nextBtn.textContent = currentIndex === TOTAL_QUESTIONS - 1 ? 'See Result →' : 'Next →';
     }
 
     function renderOptionButtons(options) {
@@ -267,13 +267,13 @@
     }
 
     function getIQCategory(iq) {
-        if (iq >= 145) return { label: "อัจฉริยะ", description: "ระดับสูงสุด — ความสามารถในการหาแบบแผนซับซ้อนอยู่ในกลุ่มบนสุด" };
-        if (iq >= 130) return { label: "ฉลาดมาก", description: "สูงกว่าคนทั่วไปอย่างชัดเจน มองเห็น pattern หลายชั้นได้ดี" };
-        if (iq >= 115) return { label: "สูงกว่าปกติ", description: "เหนือค่าเฉลี่ย มีความสามารถในการวิเคราะห์ pattern ที่ดี" };
-        if (iq >= 100) return { label: "ปกติ (สูง)", description: "อยู่ในเกณฑ์ปกติถึงค่อนข้างดี ใกล้เคียงค่าเฉลี่ยประชากร" };
-        if (iq >= 85) return { label: "ปกติ", description: "อยู่ในเกณฑ์ปกติ ค่าเฉลี่ยประชากรอยู่ที่ IQ 100" };
-        if (iq >= 70) return { label: "ต่ำกว่าปกติเล็กน้อย", description: "ลองทำอีกครั้งแบบไม่เร่ง อาจได้คะแนนดีขึ้น" };
-        return { label: "ต่ำกว่าปกติ", description: "แบบทดสอบนี้เป็นการประเมินเบื้องต้นเท่านั้น" };
+        if (iq >= 145) return { label: "Genius", description: "Exceptional pattern recognition ability — top percentile." };
+        if (iq >= 130) return { label: "Very High", description: "Well above average. Strong multi-layered pattern analysis." };
+        if (iq >= 115) return { label: "Above Average", description: "Above the norm. Good analytical pattern skills." };
+        if (iq >= 100) return { label: "Average (High)", description: "Within the normal-to-good range, near population mean." };
+        if (iq >= 85) return { label: "Average", description: "Within the normal range. Population average is IQ 100." };
+        if (iq >= 70) return { label: "Below Average", description: "Try again without rushing — you may score higher." };
+        return { label: "Low", description: "This is a preliminary assessment only." };
     }
 
     function showResults() {
