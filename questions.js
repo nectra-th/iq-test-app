@@ -192,13 +192,13 @@ const questions = [
     [S('square','medium','solid',C.red,{rotation:0})],[S('circle','medium','solid',C.green,{rotation:45})],[S('square','medium','solid',C.blue,{rotation:90})],[S('circle','medium','solid',C.red,{rotation:135})]],
   options:[[S('square','medium','solid',C.green,{rotation:180})],[S('circle','medium','solid',C.green,{rotation:180})],[S('square','medium','solid',C.red,{rotation:180})],[S('square','medium','solid',C.blue,{rotation:180})]],answer:0},
 
-// L3-06 Odd-one-out: compound — circle+triangle top, 1 has triangle bottom
+// L3-06 Odd-one-out: 5 unique compound shapes, 4 have accent above, 1 below
 { type:'odd-one-out', difficulty:3, figures:[
-    [S('circle','medium','none',C.white),S('triangle','small','solid',C.white,{y:-18})],
-    [S('circle','medium','none',C.white),S('triangle','small','solid',C.white,{y:-18})],
-    [S('circle','medium','none',C.white),S('triangle','small','solid',C.white,{y:-18})],
-    [S('circle','medium','none',C.white),S('triangle','small','solid',C.white,{y:18})],
-    [S('circle','medium','none',C.white),S('triangle','small','solid',C.white,{y:-18})]],answer:3},
+    [S('square','medium','none',C.blue),S('circle','tiny','solid',C.red,{y:-18})],
+    [S('circle','medium','none',C.red),S('star','tiny','solid',C.blue,{y:-18})],
+    [S('hexagon','medium','none',C.green),S('triangle','tiny','solid',C.purple,{y:-18})],
+    [S('diamond','medium','none',C.purple),S('cross','tiny','solid',C.green,{y:18})],
+    [S('triangle','medium','none',C.orange),S('diamond','tiny','solid',C.teal,{y:-18})]],answer:3},
 
 // L3-07 Odd-one-out: 5 nested shapes, 4 have matching outer+inner color, 1 mismatched
 { type:'odd-one-out', difficulty:3, figures:[
@@ -304,21 +304,21 @@ const questions = [
     [S('circle','large','none',C.white,{inner:S('star','small','striped',C.orange)})],
     [S('circle','large','none',C.white,{inner:S('hexagon','small','none',C.orange)})]],answer:0},
 
-// L4-07 Odd-one-out: 5 nested, 4 same inner-outer pairing, 1 swapped
+// L4-07 Odd-one-out: 5 unique nested, 4 have outline outer+solid inner, 1 has solid outer+outline inner
 { type:'odd-one-out', difficulty:4, figures:[
-    [S('circle','large','none',C.blue,{inner:S('square','small','solid',C.red)})],
-    [S('circle','large','none',C.blue,{inner:S('square','small','solid',C.red)})],
-    [S('square','large','none',C.red,{inner:S('circle','small','solid',C.blue)})],
-    [S('circle','large','none',C.blue,{inner:S('square','small','solid',C.red)})],
-    [S('circle','large','none',C.blue,{inner:S('square','small','solid',C.red)})]],answer:2},
+    [S('circle','large','none',C.red,{inner:S('star','small','solid',C.orange)})],
+    [S('square','large','none',C.blue,{inner:S('circle','small','solid',C.green)})],
+    [S('triangle','large','solid',C.green,{inner:S('cross','small','none',C.white)})],
+    [S('diamond','large','none',C.purple,{inner:S('triangle','small','solid',C.red)})],
+    [S('hexagon','large','none',C.orange,{inner:S('diamond','small','solid',C.blue)})]],answer:2},
 
-// L4-08 Odd-one-out: 5 compound, 4 have dot top-right, 1 has dot top-left
+// L4-08 Odd-one-out: 5 unique shapes+dots, 4 dots top-right, 1 dot top-left
 { type:'odd-one-out', difficulty:4, figures:[
-    [S('square','medium','none',C.white),S('dot','tiny','solid',C.yellow,{x:14,y:-14})],
-    [S('square','medium','none',C.white),S('dot','tiny','solid',C.yellow,{x:14,y:-14})],
-    [S('square','medium','none',C.white),S('dot','tiny','solid',C.yellow,{x:-14,y:-14})],
-    [S('square','medium','none',C.white),S('dot','tiny','solid',C.yellow,{x:14,y:-14})],
-    [S('square','medium','none',C.white),S('dot','tiny','solid',C.yellow,{x:14,y:-14})]],answer:2},
+    [S('square','medium','solid',C.blue),S('dot','tiny','solid',C.yellow,{x:14,y:-14})],
+    [S('circle','medium','solid',C.red),S('dot','tiny','solid',C.yellow,{x:14,y:-14})],
+    [S('triangle','medium','solid',C.green),S('dot','tiny','solid',C.yellow,{x:-14,y:-14})],
+    [S('hexagon','medium','solid',C.purple),S('dot','tiny','solid',C.yellow,{x:14,y:-14})],
+    [S('diamond','medium','solid',C.orange),S('dot','tiny','solid',C.yellow,{x:14,y:-14})]],answer:2},
 
 // L4-09 Rotation: compound 3 shapes, 270°
 { type:'rotation', difficulty:4, original:[
@@ -349,7 +349,7 @@ const questions = [
     [S('square',50,'none',C.white,{inner:S('hexagon','medium','solid',C.red)})],
     [S('square',50,'solid',C.white,{inner:S('circle','medium','solid',C.red)})]],answer:0},
 
-// L4-12 Odd-one-out: rotation symmetry — 4 have 90° symmetry, 1 doesn't
+// L4-12 Odd-one-out: rotation symmetry — 4 have rotational symmetry, arrow doesn't
 { type:'odd-one-out', difficulty:4, figures:[
     [S('cross','large','solid',C.teal)],
     [S('square','large','solid',C.teal)],
